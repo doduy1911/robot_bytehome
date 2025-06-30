@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>IoT Camera & Control Interface</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e1b4b, #312e81, #4c1d95);
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .header {
+            background: rgba(30, 27, 75, 0.9);
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid #8b5cf6;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            color: #c4b5fd;
+            text-shadow: 0 0 10px rgba(196, 181, 253, 0.5);
+        }
+
+        .main-container {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 300px 1fr 300px;
+            gap: 20px;
+            padding: 20px;
+            height: calc(100vh - 80px);
+        }
+
+        .control-panel {
+            background: rgba(76, 29, 149, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid #a855f7;
+            box-shadow: 0 8px 32px rgba(147, 51, 234, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .panel-title {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #c4b5fd;
+            font-weight: bold;
+        }
+
+        /* Direction Controls */
+        .direction-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .direction-btn {
+            width: 60px;
+            height: 60px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+        }
+
+        .direction-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
+            background: linear-gradient(135deg, #a855f7, #8b5cf6);
+        }
+
+        .direction-btn:active {
+            transform: translateY(0);
+        }
+
+        .direction-btn.empty {
+            background: transparent;
+            box-shadow: none;
+        }
+
+        /* Speed Controls */
+        .speed-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .speed-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+        }
+
+        .speed-up {
+            background: linear-gradient(135deg, #a855f7, #9333ea);
+            color: white;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+        }
+
+        .speed-down {
+            background: linear-gradient(135deg, #d946ef, #c026d3);
+            color: white;
+            box-shadow: 0 4px 15px rgba(217, 70, 239, 0.4);
+        }
+
+        .rotate-left {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+        }
+
+        .rotate-right {
+            background: linear-gradient(135deg, #a855f7, #9333ea);
+            color: white;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+        }
+
+        .stop-btn {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+        }
+
+        .speed-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        /* Camera Section */
+        .camera-section {
+            background: rgba(76, 29, 149, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid #a855f7;
+            box-shadow: 0 8px 32px rgba(147, 51, 234, 0.3);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .camera-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .camera-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .start-cam {
+            background: linear-gradient(135deg, #a855f7, #9333ea);
+            color: white;
+        }
+
+        .stop-cam {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+        }
+
+        .light-btn {
+            background: linear-gradient(135deg, #d946ef, #c026d3);
+            color: white;
+        }
+
+        .camera-btn:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.1);
+        }
+
+        #video-feed {
+            flex: 1;
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #1e1b4b, #312e81);
+            border-radius: 10px;
+            border: 2px solid #a855f7;
+            object-fit: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #c4b5fd;
+            font-size: 1.1rem;
+        }
+
+        /* Status Display */
+        .status-display {
+            background: rgba(30, 27, 75, 0.9);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            border: 1px solid #8b5cf6;
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+
+        .status-value {
+            color: #c4b5fd;
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+                gap: 15px;
+            }
+            
+            .direction-grid {
+                justify-self: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 10px;
+            }
+            
+            .control-panel {
+                padding: 15px;
+            }
+            
+            .direction-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>🎮 Interface de Contrôle IoT - Caméra & Navigation</h1>
+    </div>
+
+    <div class="main-container">
+        <!-- Left Panel: Direction Controls -->
+        <div class="control-panel">
+            <div class="panel-title">🎯 Contrôles Directionnels</div>
+            
+            <div class="direction-grid">
+                <div class="direction-btn empty"></div>
+                <button class="direction-btn" onmousedown="startMove('forward')" onmouseup="stopMove()" ontouchstart="startMove('forward')" ontouchend="stopMove()">⬆️</button>
+                <div class="direction-btn empty"></div>
+                
+                <button class="direction-btn" onmousedown="startMove('left')" onmouseup="stopMove()" ontouchstart="startMove('left')" ontouchend="stopMove()">⬅️</button>
+                <button class="direction-btn stop-btn" onclick="stopAll()">⏹️</button>
+                <button class="direction-btn" onmousedown="startMove('right')" onmouseup="stopMove()" ontouchstart="startMove('right')" ontouchend="stopMove()">➡️</button>
+                
+                <div class="direction-btn empty"></div>
+                <button class="direction-btn" onmousedown="startMove('backward')" onmouseup="stopMove()" ontouchstart="startMove('backward')" ontouchend="stopMove()">⬇️</button>
+                <div class="direction-btn empty"></div>
+            </div>
+
+            <div class="status-display">
+                <div class="status-item">
+                    <span>Vitesse X:</span>
+                    <span class="status-value" id="vx-display">0.0</span>
+                </div>
+                <div class="status-item">
+                    <span>Vitesse Y:</span>
+                    <span class="status-value" id="vy-display">0.0</span>
+                </div>
+                <div class="status-item">
+                    <span>Rotation:</span>
+                    <span class="status-value" id="w-display">0.0</span>
+                </div>
+                <div class="status-item">
+                    <span>Connexion:</span>
+                    <span class="status-value" id="connection-status">🔴 Déconnecté</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center: Camera Feed -->
+        <div class="camera-section">
+            <div class="panel-title">📹 Flux Caméra IoT</div>
+            
+            <div class="camera-controls">
+                <button class="camera-btn start-cam" onclick="startCamera()">📺 Démarrer</button>
+                <button class="camera-btn stop-cam" onclick="stopCamera()">⏹️ Arrêter</button>
+                <button class="camera-btn light-btn" onclick="toggleLight()">💡 Éclairage</button>
+            </div>
+
+            <div id="video-feed">
+                <div>📷 Flux caméra apparaîtra ici</div>
+            </div>
+        </div>
+
+        <!-- Right Panel: Speed & Rotation Controls -->
+        <div class="control-panel">
+            <div class="panel-title">⚡ Contrôles Vitesse & Rotation</div>
+            
+            <div class="speed-controls">
+                <button class="speed-btn speed-up" onmousedown="adjustSpeed('up')" onmouseup="stopSpeedAdjust()">
+                    🚀 Accélérer
+                </button>
+                
+                <button class="speed-btn speed-down" onmousedown="adjustSpeed('down')" onmouseup="stopSpeedAdjust()">
+                    🐌 Ralentir
+                </button>
+                
+                <button class="speed-btn rotate-left" onmousedown="startRotation('left')" onmouseup="stopRotation()">
+                    ↺ Rotation Gauche
+                </button>
+                
+                <button class="speed-btn rotate-right" onmousedown="startRotation('right')" onmouseup="stopRotation()">
+                    ↻ Rotation Droite
+                </button>
+                
+                <button class="speed-btn stop-btn" onclick="emergencyStop()">
+                    🛑 ARRÊT D'URGENCE
+                </button>
+            </div>
+
+            <div class="status-display">
+                <div class="status-item">
+                    <span>Vitesse Max:</span>
+                    <span class="status-value" id="max-speed">0.2</span>
+                </div>
+                <div class="status-item">
+                    <span>Vitesse Actuelle:</span>
+                    <span class="status-value" id="current-speed">0.0</span>
+                </div>
+                <div class="status-item">
+                    <span>Mode:</span>
+                    <span class="status-value" id="control-mode">Manuel</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const BASE_URL = "http://localhost:3006";
+        const USER_ID = "u1";
+        const DEVICE_ID = "d1";
+
+        // WebSocket setup
+        let socket;
+        let isConnected = false;
+        let vx = 0, vy = 0, w = 0;
+        let currentSpeed = 0.1;
+        let maxSpeed = 0.2;
+        let minSpeed = 0.05;
+        let isLightOn = false;
+        let autoRefreshInterval;
+
+        function initWebSocket() {
+            socket = new WebSocket(`ws://localhost:3006/joystick?userId=${USER_ID}`);
+            
+            socket.onopen = () => {
+                console.log("✅ WebSocket connected");
+                isConnected = true;
+                updateConnectionStatus(true);
+            };
+            
+            socket.onerror = (error) => {
+                console.error("❌ WebSocket error:", error);
+                isConnected = false;
+                updateConnectionStatus(false);
+            };
+            
+            socket.onclose = () => {
+                console.log("⚠️ WebSocket disconnected");
+                isConnected = false;
+                updateConnectionStatus(false);
+                // Tentative de reconnexion après 3 secondes
+                setTimeout(initWebSocket, 3000);
+            };
+        }
+
+        function updateConnectionStatus(connected) {
+            const statusElement = document.getElementById('connection-status');
+            if (connected) {
+                statusElement.textContent = '🟢 Connecté';
+            } else {
+                statusElement.textContent = '🔴 Déconnecté';
+            }
+        }
+
+        function sendCommand(command) {
+            if (!isConnected) {
+                console.warn("⚠️ WebSocket not connected");
+                return;
+            }
+
+            const payload = {
+                userId: USER_ID,
+                deviceId: DEVICE_ID,
+                command: command,
+                vx: Math.round(vx * 10) / 10,
+                vy: Math.round(vy * 10) / 10,
+                w: Math.round(w * 10) / 10
+            };
+
+            console.log("Sending:", payload);
+            socket.send(JSON.stringify(payload));
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            document.getElementById('vx-display').textContent = (Math.round(vx * 10) / 10).toFixed(1);
+            document.getElementById('vy-display').textContent = (Math.round(vy * 10) / 10).toFixed(1);
+            document.getElementById('w-display').textContent = (Math.round(w * 10) / 10).toFixed(1);
+            document.getElementById('current-speed').textContent = currentSpeed.toFixed(2);
+            document.getElementById('max-speed').textContent = maxSpeed.toFixed(2);
+        }
+
+        // Direction Controls
+        function startMove(direction) {
+            switch(direction) {
+                case 'forward':
+                    vy = currentSpeed;
+                    break;
+                case 'backward':
+                    vy = -currentSpeed;
+                    break;
+                case 'left':
+                    vx = -currentSpeed;
+                    break;
+                case 'right':
+                    vx = currentSpeed;
+                    break;
+            }
+            sendCommand('move');
+        }
+
+        function stopMove() {
+            vx = 0;
+            vy = 0;
+            sendCommand('stop');
+        }
+
+        function stopAll() {
+            vx = 0;
+            vy = 0;
+            w = 0;
+            sendCommand('stop_all');
+        }
+
+        // Speed Controls
+        function adjustSpeed(direction) {
+            if (direction === 'up' && currentSpeed < maxSpeed) {
+                currentSpeed = Math.min(currentSpeed + 0.01, maxSpeed);
+            } else if (direction === 'down' && currentSpeed > minSpeed) {
+                currentSpeed = Math.max(currentSpeed - 0.01, minSpeed);
+            }
+            updateDisplay();
+        }
+
+        function stopSpeedAdjust() {
+            // Arrêter l'ajustement de vitesse
+        }
+
+        // Rotation Controls
+        function startRotation(direction) {
+            if (direction === 'left') {
+                w = -currentSpeed;
+            } else {
+                w = currentSpeed;
+            }
+            sendCommand('rotate');
+        }
+
+        function stopRotation() {
+            w = 0;
+            sendCommand('stop_rotation');
+        }
+
+        function emergencyStop() {
+            vx = 0;
+            vy = 0;
+            w = 0;
+            sendCommand('emergency_stop');
+        }
+
+        // Camera Controls
+        function startCamera() {
+            sendCommand('start_camera');
+            startAutoRefresh();
+        }
+
+        function stopCamera() {
+            sendCommand('stop_camera');
+            stopAutoRefresh();
+        }
+
+        function toggleLight() {
+            isLightOn = !isLightOn;
+            sendCommand(isLightOn ? 'TURN_ON_LIGHT' : 'TURN_OFF_LIGHT');
+        }
+
+        function startAutoRefresh() {
+            if (autoRefreshInterval) {
+                clearInterval(autoRefreshInterval);
+            }
+            
+            autoRefreshInterval = setInterval(() => {
+                const videoFeed = document.getElementById('video-feed');
+                const img = new Image();
+                img.onload = function() {
+                    videoFeed.innerHTML = '';
+                    videoFeed.appendChild(this);
+                    this.style.width = '100%';
+                    this.style.height = '100%';
+                    this.style.objectFit = 'cover';
+                    this.style.borderRadius = '10px';
+                };
+                img.onerror = function() {
+                    videoFeed.innerHTML = '<div>❌ Erreur de connexion caméra</div>';
+                };
+                img.src = `${BASE_URL}/camera/${USER_ID}/${DEVICE_ID}?t=${Date.now()}`;
+            }, 100);
+        }
+
+        function stopAutoRefresh() {
+            if (autoRefreshInterval) {
+                clearInterval(autoRefreshInterval);
+                autoRefreshInterval = null;
+            }
+            document.getElementById('video-feed').innerHTML = '<div>📷 Flux caméra arrêté</div>';
+        }
+
+        // Initialize on page load
+        window.addEventListener('load', () => {
+            initWebSocket();
+            updateDisplay();
+        });
+
+        // Prevent context menu on long press (mobile)
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+
+        // Handle touch events properly
+        document.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+        }, { passive: false });
+
+        document.addEventListener('touchend', (e) => {
+            e.preventDefault();
+        }, { passive: false });
+    </script>
+</body>
+
+</html>
