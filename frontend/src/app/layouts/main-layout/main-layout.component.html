@@ -15,9 +15,15 @@
 </div> -->
 <div class="container">
     <app-header></app-header>
-    <app-sidebar></app-sidebar>
+
     <div class="main">
-        <router-outlet></router-outlet>
+        <app-sidebar></app-sidebar>
+        <div class="main1">
+            <router-outlet></router-outlet>
+        </div>
+
     </div>
+    <div class="clearfix"></div> <!-- 👈 Dòng quan trọng để dọn float -->
+
     <app-footer></app-footer>
 </div>
