@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,9 +20,10 @@
             overflow: hidden;
         }
 
+        /* 
         .container {
             display: grid;
-            grid-template-areas: 
+            grid-template-areas:
                 "header header"
                 "sidebar main"
                 "footer footer";
@@ -31,7 +33,7 @@
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             overflow: hidden;
-        }
+        } */
 
         /* Header */
         .header {
@@ -74,7 +76,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 0.5s;
         }
 
@@ -244,69 +246,9 @@
         .footer-links a:hover {
             color: white;
         }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .container {
-                grid-template-areas: 
-                    "header"
-                    "main"
-                    "footer";
-                grid-template-columns: 1fr;
-                margin: 10px;
-            }
-
-            .sidebar {
-                display: none;
-            }
-
-            .header {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-
-            .nav-menu {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 15px;
-            }
-
-            .main {
-                padding: 20px;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-        }
-
-        /* Animation */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .content-card {
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .content-card:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .content-card:nth-child(3) {
-            animation-delay: 0.4s;
-        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <!-- Header -->
@@ -337,45 +279,7 @@
 
         <!-- Main Content -->
         <main class="main" id="mainContent">
-            <div class="content-card">
-                <h2>Chào mừng đến với Dashboard</h2>
-                <p>Đây là trang chính của website với layout hoàn chỉnh bao gồm header, sidebar và footer. Bạn có thể tùy chỉnh nội dung theo nhu cầu của mình.</p>
-                
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number">1,234</div>
-                        <div>Người dùng</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">567</div>
-                        <div>Đơn hàng</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">89%</div>
-                        <div>Hiệu suất</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">₫2.5M</div>
-                        <div>Doanh thu</div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="content-card">
-                <h2>Thông tin chi tiết</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>
-
-            <div class="content-card">
-                <h2>Tính năng nổi bật</h2>
-                <ul style="list-style: none; padding: 0;">
-                    <li style="padding: 10px 0; border-bottom: 1px solid #eee;">✨ Thiết kế responsive hoàn toàn</li>
-                    <li style="padding: 10px 0; border-bottom: 1px solid #eee;">🎨 Hiệu ứng animation mượt mà</li>
-                    <li style="padding: 10px 0; border-bottom: 1px solid #eee;">📱 Tối ưu cho mobile</li>
-                    <li style="padding: 10px 0;">🚀 Hiệu suất cao</li>
-                </ul>
-            </div>
         </main>
 
         <!-- Footer -->
@@ -390,7 +294,7 @@
         </footer>
     </div>
 
-    <script>
+    <!-- <script>
         function showSection(section) {
             const mainContent = document.getElementById('mainContent');
             const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
@@ -503,6 +407,7 @@
                 card.style.animationDelay = `${index * 0.2}s`;
             });
         });
-    </script>
+    </script> -->
 </body>
+
 </html>
