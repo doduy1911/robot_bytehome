@@ -137,73 +137,79 @@
         <img id="video" src="" alt="Ảnh từ camera sẽ hiển thị ở đây">
         </div>
     </div>
+<!-- Include NippleJS nếu bạn chưa thêm -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.9.0/nipplejs.min.js"></script>
 
-    <script>
-        const BASE_URL = "http://localhost:3006";
-        const USER_ID = "u1";
-        const DEVICE_ID = "d1";
+<script>
+    const BASE_URL = "http://118.70.187.211:3006";
+    const USER_ID = "u1";
+    const DEVICE_ID = "d1";
 
-        // WebSocket setup with error handling
-        // const socket = new WebSocket("ws://localhost:8080/joystick");
-        const socket = new WebSocket(`ws://localhost:3006/joystick?userId=${USER_ID}`);
+    // WebSocket setup
+    const socket = new WebSocket(`ws://118.70.187.211:3006/joystick?userId=${USER_ID}`);
 
-        socket.onopen = () => console.log("✅ WebSocket connected");
-        socket.onerror = (error) => console.error("❌ WebSocket error:", error);
-        socket.onclose = () => console.log("⚠️ WebSocket disconnected");
+    socket.onopen = () => console.log("✅ WebSocket connected");
+    socket.onerror = (error) => console.error("❌ WebSocket error:", error);
+    socket.onclose = () => console.log("⚠️ WebSocket disconnected");
 
-        let vx = 0, vy = 0, w = 0;
-        const MAX_DISTANCE = 100;
-        const MAX_VALUE = 0.2;
+    let vx = 0, vy = 0, w = 0;
+    const MAX_DISTANCE = 100;     // tối đa khoảng cách joystick
+    const MAX_VALUE = 0.2;        // giá trị lớn nhất gửi đi
 
-        const joystick = nipplejs.create({
-            zone: document.getElementById('joystick-container'),
-            mode: 'static',
-            position: { left: '50%', top: '50%' },
-            color: 'blue'
-        });
+    const joystick = nipplejs.create({
+        zone: document.getElementById('joystick-container'),
+        mode: 'static',
+        position: { left: '50%', top: '50%' },
+        color: 'blue'
+    });
 
-        joystick.on('move', (evt, data) => {
-            const rad = data.angle.radian;
-            const distance = Math.min(data.distance, MAX_DISTANCE);
-            const scaled = (distance / MAX_DISTANCE) * MAX_VALUE;
-            vx = Math.cos(rad) * scaled;
-            vy = Math.sin(rad) * scaled;
-            w = vx;
-            send();
-            // Add visual feedback
-            const nipple = document.querySelector('.nipple');
-            if (nipple) nipple.classList.add('active');
-        });
+    joystick.on('move', (evt, data) => {
+        const rad = data.angle.radian;
+        const distance = Math.min(data.distance, MAX_DISTANCE);
+        const scaled = (distance / MAX_DISTANCE) * MAX_VALUE;
 
-        joystick.on('end', () => {
-            vx = 0; vy = 0; w = 0;
-            send();
-            const nipple = document.querySelector('.nipple');
-            if (nipple) nipple.classList.remove('active');
-        });
+        vx = Math.cos(rad) * scaled;
+        vy = Math.sin(rad) * scaled;
+        w = 0; // hoặc bạn có thể tính w dựa vào góc xoay nếu cần
 
-        function send() {
-    if (socket.readyState === WebSocket.OPEN) {
-        const clamp = (val) => Math.max(-0.2, Math.min(0.2, val));
-        const round1 = (val) => Math.round(clamp(val) * 10) / 10;
+        sendJoystickData();
 
-        const payload = {
-            userId: USER_ID,
-            deviceId: DEVICE_ID,
-            vx: round1(vx),
-            vy: round1(vy),
-            w: round1(w)
-        };
-        console.log("Sending:", payload);
-        socket.send(JSON.stringify(payload));
-    } else {
-        console.warn("⚠️ WebSocket not open, cannot send:", { vx, vy, w });
+        const nipple = document.querySelector('.nipple');
+        if (nipple) nipple.classList.add('active');
+    });
+
+    joystick.on('end', () => {
+        vx = 0;
+        vy = 0;
+        w = 0;
+
+        sendJoystickData();
+
+        const nipple = document.querySelector('.nipple');
+        if (nipple) nipple.classList.remove('active');
+    });
+
+    function sendJoystickData() {
+        if (socket.readyState === WebSocket.OPEN) {
+            const clamp = (val) => Math.max(-MAX_VALUE, Math.min(MAX_VALUE, val));
+            const round3 = (val) => Math.round(clamp(val) * 1000) / 1000;
+
+            const payload = {
+                userId: USER_ID,
+                deviceId: DEVICE_ID,
+                vx: round3(vx),
+                vy: round3(vy),
+                w: round3(w)
+            };
+
+            console.log("📤 Sending:", payload);
+            socket.send(JSON.stringify(payload));
+        } else {
+            console.warn("⚠️ WebSocket not open. Skipped send:", { vx, vy, w });
+        }
     }
-}
+</script>
 
-
-
-    </script>
 </body>
 
 </html>
