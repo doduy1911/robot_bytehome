@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -212,4 +213,214 @@
 
 </body>
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>IoT Camera & Joystick Control</title>
+    <script src="https://cdn.jsdelivr.net/npm/nipplejs@0.9.0/dist/nipplejs.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #e0e7ff, #f3e8ff);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #1f2937;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #4b5563;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .section {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        #joystick-container {
+            width: 200px;
+            height: 200px;
+            margin: 1rem auto;
+            background: linear-gradient(145deg, #e5e7eb, #f3f4f6);
+            border-radius: 50%;
+            border: 2px solid #d1d5db;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nipple {
+            background: rgba(59, 130, 246, 0.7) !important;
+            border-radius: 50% !important;
+            transition: transform 0.1s ease;
+        }
+
+        .nipple.active {
+            transform: scale(1.2);
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            margin: 0.5rem;
+            font-size: 0.9rem;
+            border: none;
+            background-color: #6366f1;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #4f46e5;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        #video {
+            margin-top: 1rem;
+            width: 100%;
+            max-width: 640px;
+            height: auto;
+            border-radius: 8px;
+            border: 2px solid #e5e7eb;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #video {
+                max-width: 100%;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h2>🎮 Điều khiển Joystick & Xem Camera IoT</h2>
+    <div class="container">
+        <div class="section">
+            <h3>Joystick Khiển Omni</h3>
+            <div id="joystick-container"></div>
+        </div>
+
+        <div class="section">
+            <h3>📸 Camera (ảnh từng frame)</h3>
+            <div>
+    <button onclick="sendCommand('TURN_ON_LIGHT')">💡 Bật đèn</button>
+           <button onclick="sendCommand('TURN_OFF_LIGHT')">🔌 Tắt đèn</button>
+           <button onclick="sendCommand('stopcam')">🛑 Tắt camera</button>
+          <button onclick="startAutoRefresh()">📺 Bắt đầu xem ảnh</button>
+             <button onclick="stopAutoRefresh()">✋ Dừng xem ảnh</button>
+            </div>
+        <img id="video" src="" alt="Ảnh từ camera sẽ hiển thị ở đây">
+        </div>
+    </div>
+
+    <script>
+        const BASE_URL = "http://localhost:3006";
+        const USER_ID = "u1";
+        const DEVICE_ID = "d1";
+
+        // WebSocket setup with error handling
+        // const socket = new WebSocket("ws://localhost:8080/joystick");
+        const socket = new WebSocket(`ws://localhost:3006/joystick?userId=${USER_ID}`);
+
+        socket.onopen = () => console.log("✅ WebSocket connected");
+        socket.onerror = (error) => console.error("❌ WebSocket error:", error);
+        socket.onclose = () => console.log("⚠️ WebSocket disconnected");
+
+        let vx = 0, vy = 0, w = 0;
+        const MAX_DISTANCE = 100;
+        const MAX_VALUE = 0.2;
+
+        const joystick = nipplejs.create({
+            zone: document.getElementById('joystick-container'),
+            mode: 'static',
+            position: { left: '50%', top: '50%' },
+            color: 'blue'
+        });
+
+        joystick.on('move', (evt, data) => {
+            const rad = data.angle.radian;
+            const distance = Math.min(data.distance, MAX_DISTANCE);
+            const scaled = (distance / MAX_DISTANCE) * MAX_VALUE;
+            vx = Math.cos(rad) * scaled;
+            vy = Math.sin(rad) * scaled;
+            w = vx;
+            send();
+            // Add visual feedback
+            const nipple = document.querySelector('.nipple');
+            if (nipple) nipple.classList.add('active');
+        });
+
+        joystick.on('end', () => {
+            vx = 0; vy = 0; w = 0;
+            send();
+            const nipple = document.querySelector('.nipple');
+            if (nipple) nipple.classList.remove('active');
+        });
+
+        function send() {
+    if (socket.readyState === WebSocket.OPEN) {
+        const clamp = (val) => Math.max(-0.2, Math.min(0.2, val));
+        const round1 = (val) => Math.round(clamp(val) * 10) / 10;
+
+        const payload = {
+            userId: USER_ID,
+            deviceId: DEVICE_ID,
+            vx: round1(vx),
+            vy: round1(vy),
+            w: round1(w)
+        };
+        console.log("Sending:", payload);
+        socket.send(JSON.stringify(payload));
+    } else {
+        console.warn("⚠️ WebSocket not open, cannot send:", { vx, vy, w });
+    }
+}
+
+
+
+    </script>
+</body>
+
+>>>>>>> 86c9f1522a3f6aecdd465c3e146442834ad04838
 </html>

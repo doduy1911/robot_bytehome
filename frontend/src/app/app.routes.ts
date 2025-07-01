@@ -1,3 +1,17 @@
 import { Routes } from '@angular/router';
+import { LoginPageComponent } from './pages/login/login-page/login-page.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+export const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginPageComponent },
 
-export const routes: Routes = [];
+  {path: '',
+    component: MainLayoutComponent, // layout cha
+    children: [
+      { path: 'dashboard', component: DashboardComponent }, // hiển thị tại <router-outlet>
+      // ... các route khác
+    ],
+  },
+  { path: '**', redirectTo: 'login' }
+];
