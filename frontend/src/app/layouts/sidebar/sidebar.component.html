@@ -1,26 +1,19 @@
 <div class="sidebar">
-    <h3>Menu</h3>
-    <ul class="sidebar-menu">
-        <li><a href="#" class="active" onclick="showSection('dashboard')">
-                <span class="icon">👥</span>
-                <span class="label">Người dùng</span>
-            </a></li>
-        <li><a href="#" onclick="showSection('users')">
-                <span class="icon">👥</span>
-                <span class="label">Người dùng</span>
-            </a></li>
-        <li><a href="#" onclick="showSection('reports')"><span class="icon">👥</span>
-                <span class="label">Người dùng</span></a></li>
-        <li><a href="#" onclick="showSection('settings')"><span class="icon">👥</span>
-                <span class="label">Người dùng</span></a></li>
-        <li><a href="#" onclick="showSection('analytics')"><span class="icon">👥</span>
-                <span class="label">Người dùng</span></a></li>
-        <li><a href="#" onclick="showSection('messages')"><span class="icon">👥</span>
-                <span class="label">Người dùng</span></a></li>
-        <li><a href="#" onclick="showSection('calendar')"><span class="icon">👥</span>
-                <span class="label">Người dùng</span></a></li>
-        <li><a href="#" onclick="showSection('help')"><span class="icon">👥</span>
-                <span class="label">Người dùng</span></a></li>
-    </ul>
+        <h3>Menu</h3>
+        <ul class="sidebar-menu">
+                <li>
+                        <a [routerLink]="'/dashboard'" routerLinkActive="active">
+                                <span class="icon">👥</span>
+                                <span class="label">Dashboard</span>
+                        </a>
+                </li>
+                <li>
+                        <a [routerLink]="'/control'" routerLinkActive="active">
+                                <span class="icon">👥</span>
+                                <span class="label">Điều Khiển</span>
+                        </a>
+                </li>
+
+        </ul>
 
 </div>
