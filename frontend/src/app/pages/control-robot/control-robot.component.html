@@ -1,24 +1,56 @@
 <div class="container_robot">
-    <div class="header_robott">
-        <span class="status-indicator">Hệ Thống Điều Khiển Robot</span>
+    <div class="header_robot">
+        <div class="status-indicator">Hệ Thống Điều Khiển Robot v2.0</div>
     </div>
-    <div class="main-content">
-        <div class="left-panel">
-            <div class="panel-title">Điều Khiển Di Chuyển </div>
-        </div>
-        <div class="direction-controls">
-            <button class="control-button btn-up">
 
-            </button>
-            <button class="control-button btn-dow">
-                <i class="pi pi-check"></i>
-            </button>
-            <button class="control-button btn-right">
-                <i class="pi pi-check"></i>
-            </button>
-            <button class="control-button btn-left">
-                <i class="pi pi-check"></i>
-            </button>
+    <div class="main-content">
+        <div class="main_cam">
+            <div class="cam-title">📹 Camera Trực Tiếp</div>
+            <div class="video-container">
+                <div class="no-signal">📡 Không có tín hiệu camera ... </div>
+            </div>
+        </div>
+
+        <div class="main_control">
+            <div class="movement-controls">
+                <div class="control-title">🎮 Di Chuyển</div>
+                <div class="control-grid">
+                    <button class="btn tien" onclick="moveRobot('forward')">⬆️ Tiến</button>
+                    <button class="btn trai" onclick="moveRobot('left')">⬅️ Trái</button>
+                    <button class="btn dung" onclick="stopRobot()">⏹️ DỪNG</button>
+                    <button class="btn phai" onclick="moveRobot('right')">➡️ Phải</button>
+                    <button class="btn lui" onclick="moveRobot('backward')">⬇️ Lùi</button>
+                </div>
+                <div class="speed-control">
+                    <div class="speed-label">⚡ Tốc Độ: <span id="speedValue">50</span>%</div>
+                    <input type="range" class="speed-slider" min="0" max="100" value="50" id="speedSlider">
+                </div>
+            </div>
+
+            <div class="rotation-controls">
+                <div class="control-title">🔄 Quay Đầu</div>
+                <div class="rotation-grid">
+                    <button class="btn quay-trai" onclick="rotateRobot('left')">↺ Quay Trái</button>
+                    <button class="btn quay-phai" onclick="rotateRobot('right')">↻ Quay Phải</button>
+                </div>
+                <div class="speed-control">
+                    <div class="speed-label">🔄 Tốc Độ Quay: <span id="rotateSpeedValue">30</span>%</div>
+                    <input type="range" class="speed-slider" min="0" max="100" value="30" id="rotateSpeedSlider">
+                </div>
+            </div>
+
+            <div class="functions-controls">
+                <div class="control-title">🔧 Chức Năng</div>
+                <div class="function-buttons">
+                    <button class="function-btn" onclick="toggleLight()">💡 Đèn LED</button>
+                    <button class="function-btn" onclick="playSound()">🔊 Âm Thanh</button>
+                    <button class="function-btn" onclick="takePhoto()">📸 Chụp Ảnh</button>
+                    <button class="function-btn" onclick="autoMode()">🤖 Tự Động</button>
+                    <button class="function-btn emergency-stop" onclick="emergencyStop()">
+                        🚨 DỪNG KHẨN CẤP
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
