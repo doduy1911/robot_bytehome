@@ -8,7 +8,7 @@ import { ControlRobotComponent } from './pages/Admin/control-robot/control-robot
 import { HomeComponent } from './pages/Client/home/home.component';
 import { MainComponent } from './layouts/Client/main/main.component';
 export const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  // { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginPageComponent },
 
   {
@@ -23,5 +23,5 @@ export const routes: Routes = [
   },
   { path: 'home', component: MainComponent },
 
-  { path: '**', redirectTo: 'login' },
+  // { path: '**', redirectTo: 'login' },
 ];
