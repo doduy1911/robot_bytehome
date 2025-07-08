@@ -6,12 +6,13 @@ import { HeaderComponent } from './layouts/Server/header/header.component';
 import { ControlContainer } from '@angular/forms';
 import { ControlRobotComponent } from './pages/Admin/control-robot/control-robot.component';
 import { HomeComponent } from './pages/Client/home/home.component';
+import { MainComponent } from './layouts/Client/main/main.component';
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginPageComponent },
 
   {
-    path: '',
+    path: 'admin',
     component: MainLayoutComponent, // layout cha
     children: [
       { path: 'dashboard', component: DashboardComponent },
@@ -20,7 +21,7 @@ export const routes: Routes = [
       // ... các route khác
     ],
   },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: MainComponent },
 
   { path: '**', redirectTo: 'login' },
 ];

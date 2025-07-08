@@ -1,9 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   prefix: 'tw-',
-  content: [
-    './src/**/*.{html,ts}'  // CHỈ quét file Angular: .html và .ts
-  ],
+  content: ['./src/**/*.{html,ts}'],
+
+
   theme: {
     container: {
       center: true,
