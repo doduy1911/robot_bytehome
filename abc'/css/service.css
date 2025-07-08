@@ -1,0 +1,51 @@
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  display: none !important;
+  content: none !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: auto;
+  left: auto;
+}
+
+.half-teaser-list__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 2s ease-in-out; /* Tăng thời gian để mở rộng chậm hơn */
+}
+
+.half-teaser-list:hover .half-teaser-list__content {
+  max-height: 150px; /* Đủ lớn để chứa nội dung */
+}
+
+.half-teaser-list__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+.half-teaser-list:hover .half-teaser-list__content {
+  max-height: 100px;
+}
+.half-teaser-list button {
+  display: none;
+}
+.half-teaser-list:hover button {
+  display: block;
+}
+
+.swiper-pagination-bullet {
+  height: 6px !important;
+  width: 6px !important;
+}
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background-color: black;
+}

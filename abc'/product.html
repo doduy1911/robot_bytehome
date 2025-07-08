@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>AI.Tech - Artificial Intelligence HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content name="keywords" />
+    <meta content name="description" />
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Ubuntu:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icon Font Stylesheet -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet" />
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/service.css" rel="stylesheet" />
+    <link href="css/tailwind.css" rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- Spinner Start -->
+    <div
+      id="spinner"
+      class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+    >
+      <img src="/img/Group.svg" alt class="tw-w-16 tw-h-16 tw-animate-spin" />
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Navbar Start -->
+    <div
+      class="sticky-top header-color-not-animate tw-bg-white/30 tw-backdrop-blur-lg"
+    >
+      <div class="tw-container tw-px-5 md:tw-px-0">
+        <nav
+          class="navbar tw-h-[60px] !tw-p-0 navbar-expand-lg navbar-dark p-0"
+        >
+          <a href="index.html" class="tw-h-[60px] tw-py-3 tw-inline-block">
+            <!-- <h1 class="text-white">AI<span class="text-dark">.</span>Tech</h1>		-->
+            <img class="tw-h-full tw-w-auto" src="img/logo.webp" alt="Logo" />
+          </a>
+          <button
+            type="button"
+            class="navbar-toggler ms-auto me-0"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+          >
+            <img class="tw-h-8 tw-w-auto0" src="/img/menu-icon.svg" alt />
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div
+              class="navbar-nav ms-auto !tw-text-black !tw-bg-white/95 !tw-backdrop-blur-3xl lg:!tw-bg-transparent lg:!tw-backdrop-blur-none"
+            >
+              <a
+                href="index.html"
+                class="nav-item nav-link !tw-text-black active"
+                >Trang chủ</a
+              >
+              <a href="about.html" class="nav-item nav-link !tw-text-black"
+                >Giới thiệu</a
+              >
+              <div class="nav-item dropdown">
+                <a
+                  href="product.html"
+                  class="nav-link dropdown-toggle !tw-text-black"
+                  data-bs-toggle="dropdown"
+                  >Sản phẩm</a
+                >
+                <div class="dropdown-menu mt-2">
+                  <a href="product.html" class="dropdown-item"
+                    >Trung tâm điều khiển</a
+                  >
+                  <a href="product.html" class="dropdown-item">Công tắc</a>
+                  <a href="product.html" class="dropdown-item"
+                    >Đèn chiếu sáng</a
+                  >
+                  <a href="product.html" class="dropdown-item"
+                    >Camera và Cảm biến</a
+                  >
+                  <a href="product.html" class="dropdown-item">Rèm cửa</a>
+                </div>
+              </div>
+              <a href="service.html" class="nav-item nav-link !tw-text-black"
+                >Giải pháp</a
+              >
+              <a href="project.html" class="nav-item nav-link !tw-text-black"
+                >Dự án đã triển khai</a
+              >
+              <a href="contact.html" class="nav-item nav-link !tw-text-black"
+                >Liên hệ</a
+              >
+            </div>
+            <butaton
+              type="button"
+              class="btn text-white p-0 d-none d-lg-block"
+              data-bs-toggle="modal"
+              data-bs-target="#searchModal"
+              ><i class="fa fa-search tw-text-black"></i
+            ></butaton>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <!-- Navbar End -->
+
+    <div
+      class="tw-container tw-py-10 tw-flex tw-flex-col tw-gap-10 lg:tw-gap-6 xl:tw-gap-[50px]"
+    >
+      <div class="tw-flex tw-flex-col tw-gap-6">
+        <h2 class="tw-text-[24px] tw-font-semibold">Đèn chiếu sáng</h2>
+        <div
+          class="tw-grid tw-grid-cols-2 xl:tw-grid-cols-4 lg:tw-grid-cols-3 tw-gap-4 md:tw-gap-6 xl:tw-gap-10"
+        >
+          <div
+            class="tw-flex tw-flex-col tw-gap-4 wow fadeIn"
+            data-wow-delay="0.1s"
+          >
+            <div
+              class="tw-w-full tw-p-4 tw-bg-slate-100/80 tw-aspect-square tw-overflow-hidden tw-flex tw-items-center tw-justify-center"
+            >
+              <img
+                src="https://static.orvibo.com/guanwang_second/front/en/images/product/mixDimmer/D1-84e2abdd3f.png"
+                alt
+                class="tw-w-[100px] tw-h-auto tw-object-cover"
+              />
+            </div>
+            <div class="tw-flex tw-flex-col tw-gap-2">
+              <p class="tw-text-[16px] lg:tw-text-[20px] tw-font-semibold">
+                MixPad M5
+              </p>
+              <p class="tw-text-[14px] lg:tw-text-[16px] tw-text-gray-500">
+                Smart Voice Control Panel
+              </p>
+            </div>
+          </div>
+          <div
+            class="tw-flex tw-flex-col tw-gap-4 wow fadeIn"
+            data-wow-delay="0.1s"
+          >
+            <div
+              class="tw-w-full tw-p-4 tw-bg-slate-100/80 tw-aspect-square tw-overflow-hidden tw-flex tw-items-center tw-justify-center"
+            >
+              <img
+                src="https://static.orvibo.com/guanwang_second/front/common/images/product_index/sec3_1-3fb329a65d.png"
+                alt
+                class="tw-w-[200px] tw-h-auto tw-object-cover"
+              />
+            </div>
+            <div class="tw-flex tw-flex-col tw-gap-2">
+              <p class="tw-text-[16px] lg:tw-text-[20px] tw-font-semibold">
+                MixPad M5
+              </p>
+              <p class="tw-text-[14px] lg:tw-text-[16px] tw-text-gray-500">
+                Smart Voice Control Panel
+              </p>
+            </div>
+          </div>
+          <div
+            class="tw-flex tw-flex-col tw-gap-4 wow fadeIn"
+            data-wow-delay="0.1s"
+          >
+            <div
+              class="tw-w-full tw-p-4 tw-bg-slate-100/80 tw-aspect-square tw-overflow-hidden tw-flex tw-items-center tw-justify-center"
+            >
+              <img
+                src="https://static.orvibo.com/guanwang_second/front/mobile/images/new/product/light/product-f57bbf70ce.png"
+                alt
+                class="tw-w-[200px] tw-h-auto tw-object-cover"
+              />
+            </div>
+            <div class="tw-flex tw-flex-col tw-gap-2">
+              <p class="tw-text-[16px] lg:tw-text-[20px] tw-font-semibold">
+                MixPad M5
+              </p>
+              <p class="tw-text-[14px] lg:tw-text-[16px] tw-text-gray-500">
+                Smart Voice Control Panel
+              </p>
+            </div>
+          </div>
+          <div
+            class="tw-flex tw-flex-col tw-gap-4 wow fadeIn"
+            data-wow-delay="0.1s"
+          >
+            <div
+              class="tw-w-full tw-p-4 tw-bg-slate-100/80 tw-aspect-square tw-overflow-hidden tw-flex tw-items-center tw-justify-center"
+            >
+              <img
+                src="https://static.orvibo.com/guanwang_second/front/images/products/cangqiong/pro-350f4a394c.png"
+                alt
+                class="tw-w-[200px] tw-h-auto tw-object-cover"
+              />
+            </div>
+            <div class="tw-flex tw-flex-col tw-gap-2">
+              <p class="tw-text-[16px] lg:tw-text-[20px] tw-font-semibold">
+                MixPad M5
+              </p>
+              <p class="tw-text-[14px] lg:tw-text-[16px] tw-text-gray-500">
+                Smart Voice Control Panel
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- product section 2 -->
+      <div class="tw-flex tw-flex-col tw-gap-6">
+        <h2 class="tw-text-[24px] tw-font-semibold">Trung tâm điều khiển</h2>
+        <div
+          class="tw-grid tw-grid-cols-2 xl:tw-grid-cols-4 lg:tw-grid-cols-3 tw-gap-4 md:tw-gap-6 xl:tw-gap-10"
+        >
+          <div
+            class="tw-flex tw-flex-col tw-gap-4 wow fadeIn"
+            data-wow-delay="0.1s"
+          >
+            <div
+              class="tw-w-full tw-p-4 tw-bg-slate-100/80 tw-aspect-square tw-overflow-hidden tw-flex tw-items-center tw-justify-center"
+            >
+              <img
+                src="https://static.orvibo.com/guanwang_second/front/images/2020/nav/product_2_4-0080946f53.png"
+                alt
+                class="tw-w-[200px] tw-h-auto tw-object-cover"
+              />
+            </div>
+            <div class="tw-flex tw-flex-col tw-gap-2">
+              <p class="tw-text-[16px] lg:tw-text-[20px] tw-font-semibold">
+                Smart Door Lock C1
+              </p>
+              <p class="tw-text-[14px] lg:tw-text-[16px] tw-text-gray-500">
+                More Smart And Keep Your Home Safe
+              </p>
+            </div>
+          </div>
+          <div
+            class="tw-flex tw-flex-col tw-gap-4 wow fadeIn"
+            data-wow-delay="0.1s"
+          >
+            <div
+              class="tw-w-full tw-p-4 tw-bg-slate-100/80 tw-aspect-square tw-overflow-hidden tw-flex tw-items-center tw-justify-center"
+            >
+              <img
+                src="https://static.orvibo.com/guanwang_second/front/images/products/camera/camera-6e53cb8e1f.png"
+                alt
+                class="tw-w-[200px] tw-h-auto tw-object-cover"
+              />
+            </div>
+            <div class="tw-flex tw-flex-col tw-gap-2">
+              <p class="tw-text-[16px] lg:tw-text-[20px] tw-font-semibold">
+                Smart home kits
+              </p>
+              <p class="tw-text-[14px] lg:tw-text-[16px] tw-text-gray-500">
+                Multiple kits of security, elder care, lighting and more
+              </p>
+            </div>
+          </div>
+          <div
+            class="tw-flex tw-flex-col tw-gap-4 wow fadeIn"
+            data-wow-delay="0.1s"
+          >
+            <div
+              class="tw-w-full tw-p-4 tw-bg-slate-100/80 tw-aspect-square tw-overflow-hidden tw-flex tw-items-center tw-justify-center"
+            >
+              <img
+                src="https://static.orvibo.com/guanwang_second/front/common/images/product_index/sec2_4_2x-81c7aaafd3.png"
+                alt
+                class="tw-w-[200px] tw-h-auto tw-object-cover"
+              />
+            </div>
+            <div class="tw-flex tw-flex-col tw-gap-2">
+              <p class="tw-text-[16px] lg:tw-text-[20px] tw-font-semibold">
+                MixPad M5
+              </p>
+              <p class="tw-text-[14px] lg:tw-text-[16px] tw-text-gray-500">
+                Smart Voice Control Panel
+              </p>
+            </div>
+          </div>
+          <div
+            class="tw-flex tw-flex-col tw-gap-4 wow fadeIn"
+            data-wow-delay="0.1s"
+          >
+            <div
+              class="tw-w-full tw-p-4 tw-bg-slate-100/80 tw-aspect-square tw-overflow-hidden tw-flex tw-items-center tw-justify-center"
+            >
+              <img
+                src="https://static.orvibo.com/guanwang_second/front/images/products/cangqiong/pro-350f4a394c.png"
+                alt
+                class="tw-w-[200px] tw-h-auto tw-object-cover"
+              />
+            </div>
+            <div class="tw-flex tw-flex-col tw-gap-2">
+              <p class="tw-text-[16px] lg:tw-text-[20px] tw-font-semibold">
+                MixPad M5
+              </p>
+              <p class="tw-text-[14px] lg:tw-text-[16px] tw-text-gray-500">
+                Smart Voice Control Panel
+              </p>
+            </div>
+          </div>
+          <div
+            class="tw-flex tw-flex-col tw-gap-4 wow fadeIn"
+            data-wow-delay="0.1s"
+          >
+            <div
+              class="tw-w-full tw-p-4 tw-bg-slate-100/80 tw-aspect-square tw-overflow-hidden tw-flex tw-items-center tw-justify-center"
+            >
+              <img
+                src="https://static.orvibo.com/guanwang_second/front/mobile/images/new/product/light/product-f57bbf70ce.png"
+                alt
+                class="tw-w-[200px] tw-h-auto tw-object-cover"
+              />
+            </div>
+            <div class="tw-flex tw-flex-col tw-gap-2">
+              <p class="tw-text-[16px] lg:tw-text-[20px] tw-font-semibold">
+                MixPad M5
+              </p>
+              <p class="tw-text-[14px] lg:tw-text-[16px] tw-text-gray-500">
+                Smart Voice Control Panel
+              </p>
+            </div>
+          </div>
+          <div
+            class="tw-flex tw-flex-col tw-gap-4 wow fadeIn"
+            data-wow-delay="0.1s"
+          >
+            <div
+              class="tw-w-full tw-p-4 tw-bg-slate-100/80 tw-aspect-square tw-overflow-hidden tw-flex tw-items-center tw-justify-center"
+            >
+              <img
+                src="https://static.orvibo.com/guanwang_second/front/images/products/cangqiong/pro-350f4a394c.png"
+                alt
+                class="tw-w-[200px] tw-h-auto tw-object-cover"
+              />
+            </div>
+            <div class="tw-flex tw-flex-col tw-gap-2">
+              <p class="tw-text-[16px] lg:tw-text-[20px] tw-font-semibold">
+                MixPad M5
+              </p>
+              <p class="tw-text-[14px] lg:tw-text-[16px] tw-text-gray-500">
+                Smart Voice Control Panel
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- product section 3 -->
+      <div class="tw-flex tw-flex-col tw-gap-6">
+        <h2 class="tw-text-[24px] tw-font-semibold">Camera và cảm biến</h2>
+        <div
+          class="tw-grid tw-grid-cols-2 xl:tw-grid-cols-4 lg:tw-grid-cols-3 tw-gap-4 md:tw-gap-6 xl:tw-gap-10"
+        >
+          <div
+            class="tw-flex tw-flex-col tw-gap-4 wow fadeIn"
+            data-wow-delay="0.1s"
+          >
+            <div
+              class="tw-w-full tw-p-4 tw-bg-slate-100/80 tw-aspect-square tw-overflow-hidden tw-flex tw-items-center tw-justify-center"
+            >
+              <img
+                src="https://static.orvibo.com/guanwang_second/front/en/images/product/mixDimmer/D1-84e2abdd3f.png"
+                alt
+                class="tw-w-[100px] tw-h-auto tw-object-cover"
+              />
+            </div>
+            <div class="tw-flex tw-flex-col tw-gap-2">
+              <p class="tw-text-[16px] lg:tw-text-[20px] tw-font-semibold">
+                MixPad M5
+              </p>
+              <p class="tw-text-[14px] lg:tw-text-[16px] tw-text-gray-500">
+                Smart Voice Control Panel
+              </p>
+            </div>
+          </div>
+          <div
+            class="tw-flex tw-flex-col tw-gap-4 wow fadeIn"
+            data-wow-delay="0.1s"
+          >
+            <div
+              class="tw-w-full tw-p-4 tw-bg-slate-100/80 tw-aspect-square tw-overflow-hidden tw-flex tw-items-center tw-justify-center"
+            >
+              <img
+                src="https://static.orvibo.com/guanwang_second/front/common/images/product_index/sec3_1-3fb329a65d.png"
+                alt
+                class="tw-w-[200px] tw-h-auto tw-object-cover"
+              />
+            </div>
+            <div class="tw-flex tw-flex-col tw-gap-2">
+              <p class="tw-text-[16px] lg:tw-text-[20px] tw-font-semibold">
+                MixPad M5
+              </p>
+              <p class="tw-text-[14px] lg:tw-text-[16px] tw-text-gray-500">
+                Smart Voice Control Panel
+              </p>
+            </div>
+          </div>
+          <div
+            class="tw-flex tw-flex-col tw-gap-4 wow fadeIn"
+            data-wow-delay="0.1s"
+          >
+            <div
+              class="tw-w-full tw-p-4 tw-bg-slate-100/80 tw-aspect-square tw-overflow-hidden tw-flex tw-items-center tw-justify-center"
+            >
+              <img
+                src="https://static.orvibo.com/guanwang_second/front/mobile/images/new/product/light/product-f57bbf70ce.png"
+                alt
+                class="tw-w-[200px] tw-h-auto tw-object-cover"
+              />
+            </div>
+            <div class="tw-flex tw-flex-col tw-gap-2">
+              <p class="tw-text-[16px] lg:tw-text-[20px] tw-font-semibold">
+                MixPad M5
+              </p>
+              <p class="tw-text-[14px] lg:tw-text-[16px] tw-text-gray-500">
+                Smart Voice Control Panel
+              </p>
+            </div>
+          </div>
+          <div
+            class="tw-flex tw-flex-col tw-gap-4 wow fadeIn"
+            data-wow-delay="0.1s"
+          >
+            <div
+              class="tw-w-full tw-p-4 tw-bg-slate-100/80 tw-aspect-square tw-overflow-hidden tw-flex tw-items-center tw-justify-center"
+            >
+              <img
+                src="https://static.orvibo.com/guanwang_second/front/images/products/cangqiong/pro-350f4a394c.png"
+                alt
+                class="tw-w-[200px] tw-h-auto tw-object-cover"
+              />
+            </div>
+            <div class="tw-flex tw-flex-col tw-gap-2">
+              <p class="tw-text-[16px] lg:tw-text-[20px] tw-font-semibold">
+                MixPad M5
+              </p>
+              <p class="tw-text-[14px] lg:tw-text-[16px] tw-text-gray-500">
+                Smart Voice Control Panel
+              </p>
+            </div>
+          </div>
+          <div
+            class="tw-flex tw-flex-col tw-gap-4 wow fadeIn"
+            data-wow-delay="0.1s"
+          >
+            <div
+              class="tw-w-full tw-p-4 tw-bg-slate-100/80 tw-aspect-square tw-overflow-hidden tw-flex tw-items-center tw-justify-center"
+            >
+              <img
+                src="https://static.orvibo.com/guanwang_second/front/common/images/product_index/sec3_1-3fb329a65d.png"
+                alt
+                class="tw-w-[200px] tw-h-auto tw-object-cover"
+              />
+            </div>
+            <div class="tw-flex tw-flex-col tw-gap-2">
+              <p class="tw-text-[16px] lg:tw-text-[20px] tw-font-semibold">
+                MixPad M5
+              </p>
+              <p class="tw-text-[14px] lg:tw-text-[16px] tw-text-gray-500">
+                Smart Voice Control Panel
+              </p>
+            </div>
+          </div>
+          <div
+            class="tw-flex tw-flex-col tw-gap-4 wow fadeIn"
+            data-wow-delay="0.1s"
+          >
+            <div
+              class="tw-w-full tw-p-4 tw-bg-slate-100/80 tw-aspect-square tw-overflow-hidden tw-flex tw-items-center tw-justify-center"
+            >
+              <img
+                src="https://static.orvibo.com/guanwang_second/front/mobile/images/new/product/light/product-f57bbf70ce.png"
+                alt
+                class="tw-w-[200px] tw-h-auto tw-object-cover"
+              />
+            </div>
+            <div class="tw-flex tw-flex-col tw-gap-2">
+              <p class="tw-text-[16px] lg:tw-text-[20px] tw-font-semibold">
+                MixPad M5
+              </p>
+              <p class="tw-text-[14px] lg:tw-text-[16px] tw-text-gray-500">
+                Smart Voice Control Panel
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Full Screen Search Start -->
+    <div class="modal fade" id="searchModal" tabindex="-1">
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content" style="background: rgba(20, 24, 62, 0.7)">
+          <div class="modal-header border-0">
+            <button
+              type="button"
+              class="btn btn-square bg-white btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div
+            class="modal-body d-flex align-items-center justify-content-center"
+          >
+            <div class="input-group" style="max-width: 600px">
+              <input
+                type="text"
+                class="form-control bg-transparent border-light p-3"
+                placeholder="Type search keyword"
+              />
+              <button class="btn btn-light px-4">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Full Screen Search End -->
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-white-50 footer pt-5">
+      <div class="container py-5">
+        <div class="row g-5">
+          <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
+            <a href="index.html" class="d-inline-block mb-3">
+              <h1 class="text-white">
+                Byte<span class="text-primary">.</span>Home
+              </h1>
+            </a>
+            <p class="mb-0">Byte Home</p>
+            <p>
+              Chúng tôi mong muốn mang đến một không gian sống thông minh và
+              hiện đại với chi phí hợp lý nhất cho người dân Việt Nam.
+            </p>
+            <p>Tầm nhìn</p>
+            <p>
+              Byte Home hướng đến trở thành đơn vị phát triển nhà thông minh
+              hàng đầu không chỉ trong nước mà còn trên Thế giới. Chúng tôi luôn
+              tiên phong đổi mới, ứng dụng kỹ thuật hiện đại, tích hợp công nghệ
+              tiên tiến vào cuộc sống mỗi người dân.
+            </p>
+          </div>
+          <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
+            <h5 class="text-white mb-4">Thông tin liên hệ</h5>
+            <p>
+              <i class="fa fa-map-marker-alt me-3"></i>157/23 Pháo Đài Láng,
+              Láng Thượng, Đống Đa, TP. Hà Nội
+            </p>
+            <p><i class="fa fa-phone-alt me-3"></i>024 7301 3222</p>
+            <p><i class="fa fa-envelope me-3"></i>hotrokhachhang@bytehome.vn</p>
+            <div class="d-flex pt-2">
+              <a class="btn btn-outline-light btn-social" href
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a class="btn btn-outline-light btn-social" href
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a class="btn btn-outline-light btn-social" href
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a class="btn btn-outline-light btn-social" href
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a class="btn btn-outline-light btn-social" href
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.5s">
+            <h5 class="text-white mb-4">Hỗ trợ</h5>
+            <a class="btn btn-link" href>Giới thiệu</a>
+            <a class="btn btn-link" href>Liên hệ</a>
+            <a class="btn btn-link" href>Chính sách sử dụng</a>
+            <a class="btn btn-link" href>Điều khoản sử dụng</a>
+            <a class="btn btn-link" href>Tuyển dụng</a>
+          </div>
+          <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.7s">
+            <h5 class="text-white mb-4">Dịch vụ</h5>
+            <a class="btn btn-link" href>Cung cấp giải pháp nhà thông minh</a>
+            <a class="btn btn-link" href>Giải pháp nhà thông minh</a>
+            <a class="btn btn-link" href>Giải pháp bất động sản</a>
+            <a class="btn btn-link" href>Giải pháp an ninh, bảo mật</a>
+            <a class="btn btn-link" href>Giải pháp sản xuất bo mạch AI</a>
+          </div>
+        </div>
+      </div>
+      <div class="container wow fadeIn" data-wow-delay="0.1s">
+        <div class="copyright">
+          <div class="row">
+            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+              &copy; <a href="#">http://bytehome.vn</a>, All Right Reserved.
+
+              <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+              Designed By
+              <a href="bytehome.vn">BYTEHOME</a>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+              <div class="footer-menu">
+                <a href>Home</a>
+                <a href>Cookies</a>
+                <a href>Help</a>
+                <a href>FAQs</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <script src="js/service.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script></script>
+  </body>
+</html>
